@@ -1,0 +1,581 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2c2c8a, #8a56c2);
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.taskManager {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #fff;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    color: #333;
+}
+
+h1 {
+    color: #000;
+    font-size: 28px;
+    margin: 0 0 1.5rem 0;
+}
+
+h3 {
+    color: #333;
+    font-size: 18px;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #009688;
+    padding-bottom: 0.5rem;
+}
+
+h4 {
+    margin: 0;
+    color: #009688;
+}
+
+/* ==================== USER MANAGEMENT ==================== */
+
+.userSection {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.userInputGroup {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#userInput {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+#userInput:focus {
+    outline: none;
+    border-color: #009688;
+    background-color: #f0fffe;
+}
+
+#addUserBtn {
+    padding: 12px 25px;
+    background-color: #009688;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+#addUserBtn:hover {
+    background-color: #00796b;
+}
+
+.userList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.userItem {
+    background-color: white;
+    border: 2px solid #009688;
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.userName {
+    font-weight: 600;
+    color: #009688;
+}
+
+.userStats {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 5px;
+}
+
+.deleteUserBtn {
+    background: transparent;
+    border: none;
+    color: #e96075;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.deleteUserBtn:hover {
+    background-color: #ffe6e6;
+}
+
+/*  TASK INPUT SECTION  */
+
+.taskInputSection {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+#taskform {
+    width: 100%;
+}
+
+.formGroup {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#textinput,
+#userSelect {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+#textinput {
+    flex: 1;
+    min-width: 200px;
+}
+
+#userSelect {
+    min-width: 150px;
+}
+
+#textinput:focus,
+#userSelect:focus {
+    outline: none;
+    border-color: #009688;
+    background-color: #f0fffe;
+}
+
+#taskform button {
+    background: linear-gradient(135deg, #ff4e00, #ec9f05);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+#taskform button:hover {
+    background: linear-gradient(135deg, #a4508b, #5f0a87);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*  STATISTICS SECTION  */
+
+.statsSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.statCard {
+    background: linear-gradient(135deg, #009688, #00796b);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statCard p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0 0 0;
+}
+
+/*  FILTER SECTION  */
+
+.filterSection {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+#filterUser {
+    padding: 10px 15px;
+    border: 2px solid #009688;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: white;
+    min-width: 200px;
+}
+
+#filterUser:focus {
+    outline: none;
+    background-color: #f0fffe;
+}
+
+/* TASK CONTAINER */
+
+.taskContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px;
+    padding: 0 20px;
+}
+
+.noTasks {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #999;
+    font-size: 1.2rem;
+    padding: 40px 20px;
+}
+
+.taskCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 20px rgba(203, 205, 211, 0.1);
+    padding: 1.5rem;
+    min-height: 220px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border-left: 5px solid #ddd;
+}
+
+.taskCard:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.taskCard.completed {
+    background: linear-gradient(135deg, #b0db7d 40%, #99dbb4 100%);
+    border-left-color: #4ec07d;
+}
+
+.taskCard.pending {
+    background: linear-gradient(135deg, #ef8d9c 40%, #ffc39e 100%);
+    border-left-color: #e96075;
+}
+
+.taskCard p {
+    margin: 0.5rem 0;
+    color: #fff;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+.taskText {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.userInfo {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    opacity: 0.9;
+}
+
+.taskCard .status {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+.button-box {
+    background: #ffffff;
+    border-radius: 20px;
+    outline: 0;
+    border: none;
+    box-shadow: 2px 2px 10px rgba(119, 119, 119, 0.3);
+    transition: all 0.3s ease;
+    margin-top: 0.8rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.button-box:hover {
+    background: #efefef;
+    transform: scale(1.05);
+    box-shadow: 2px 2px 15px rgba(119, 119, 119, 0.5);
+}
+
+.button-box:active {
+    transform: scale(0.98);
+}
+
+.green {
+    color: #4ec07d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.red {
+    color: #e96075;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==================== CONFIRMATION MODAL ==================== */
+
+.overlay {
+    filter: blur(2px);
+}
+
+.overlay::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.confirm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    min-width: 280px;
+    max-width: 500px;
+    height: auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: fade 0.3s ease 1 forwards;
+    z-index: 1000;
+}
+
+.confirm h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1.5rem 1rem 0.5rem;
+    color: #333;
+}
+
+.confirm p {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0 2rem 2rem;
+    color: #666;
+}
+
+.confirm button {
+    background: transparent;
+    border: none;
+    color: #1678e5;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.confirm button:first-of-type {
+    border-top: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    left: 0;
+    border-radius: 0 0 0 10px;
+}
+
+.confirm button:last-of-type {
+    border-top: 1px solid #e0e0e0;
+    right: 0;
+    border-radius: 0 0 10px 0;
+}
+
+.confirm button:hover {
+    background: #f5f5f5;
+}
+
+.confirm button:active {
+    background: #e0e0e0;
+}
+
+
+@media (max-width: 768px) {
+    .card {
+        padding: 1.5rem;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    .statsSection {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+    }
+
+    .statCard {
+        padding: 1rem;
+    }
+
+    .statCard p {
+        font-size: 1.5rem;
+    }
+
+    .taskContainer {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        margin: 15px 10px;
+        padding: 0 10px;
+    }
+
+    .userInputGroup,
+    .formGroup {
+        flex-direction: column;
+    }
+
+    #userInput,
+    #textinput,
+    #userSelect,
+    #filterUser {
+        width: 100%;
+        min-width: unset;
+    }
+
+    #taskform button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    .card {
+        padding: 1rem;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        font-size: 14px;
+        margin-top: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .statsSection {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .statCard {
+        padding: 0.8rem;
+    }
+
+    .statCard p {
+        font-size: 1.3rem;
+    }
+
+    .taskContainer {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: 10px 5px;
+        padding: 0 5px;
+    }
+
+    .taskCard {
+        min-height: 200px;
+        padding: 1rem;
+    }
+
+    .taskText {
+        font-size: 1rem;
+    }
+
+    .button-box {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .confirm {
+        width: 95%;
+    }
+
+    .confirm button {
+        height: 45px;
+        font-size: 0.9rem;
+    }
+}

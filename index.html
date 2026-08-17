@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+        <section class="taskManager">
+            <header class="card">
+                <h1>Task Manager</h1>
+                
+                <!-- User Management Section -->
+                <div class="userSection">
+                    <h3>Manage Users</h3>
+                    <div class="userInputGroup">
+                        <input type="text" id="userInput" placeholder="Enter username">
+                        <button type="button" id="addUserBtn">Add User</button>
+                    </div>
+                    <div id="userList" class="userList"></div>
+                </div>
+
+                <!-- Task Input Section -->
+                <div class="taskInputSection">
+                    <h3>Add Task</h3>
+                    <form id="taskform">
+                        <div class="formGroup">
+                            <input type="text" id="textinput" placeholder="Enter a task...">
+                            <select id="userSelect">
+                                <option value="">Select User</option>
+                            </select>
+                            <button type="submit">Add Task</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Statistics Section -->
+                <div class="statsSection">
+                    <div class="statCard">
+                        <h4>Total Tasks</h4>
+                        <p id="totalTasks">0</p>
+                    </div>
+                    <div class="statCard">
+                        <h4>Completed</h4>
+                        <p id="completedCount">0</p>
+                    </div>
+                    <div class="statCard">
+                        <h4>Pending</h4>
+                        <p id="pendingCount">0</p>
+                    </div>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="filterSection">
+                    <h3>Filter by User</h3>
+                    <select id="filterUser">
+                        <option value="">All Tasks</option>
+                    </select>
+                </div>
+            </header>
+            <section id="taskContainer" class="taskContainer"></section>
+        </section>
+
+        <!-- Delete Confirmation Modal -->
+        <div class="confirm">
+            <h1>Confirm Your Action</h1>
+            <p>Are you <strong>really</strong> sure that you want to delete this task?</p>
+            <button class="cancel">Cancel</button>
+            <button autofocus class="confirmDelete">Confirm</button>
+        </div>
+
+        <script src="script.js"></script>
+</body>
+</html>
