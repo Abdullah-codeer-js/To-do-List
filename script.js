@@ -41,7 +41,7 @@ function renderUserList() {
     
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('deleteUserBtn');
-    deleteBtn.innerText = '✕';
+    deleteBtn.innerText = 'X';
     deleteBtn.addEventListener('click', () => deleteUser(index));
     
     userItem.appendChild(userName);
@@ -84,8 +84,14 @@ function addUser() {
     return;
   }
 
-  if (!/[A-Za-z]/.test(userName)) {
-    alert('Username must contain at least one letter');
+  if (/^\d/.test(userName)) {
+    alert('Username must not start with a number');
+    return;
+  }
+
+  const alphabetCount = (userName.match(/[A-Za-z]/g) || []).length;
+  if (alphabetCount < 5) {
+    alert('Username must contain at least 5 letters');
     return;
   }
   
@@ -170,43 +176,52 @@ function renderTasks() {
     return;
   }
 
+  const tableWrapper = document.createElement('div');
+  tableWrapper.classList.add('tableWrapper');
+
+  const taskTable = document.createElement('table');
+  taskTable.classList.add('taskTable');
+  taskTable.innerHTML = `
+    <thead>
+      <tr>
+        <th scope="col">Task name</th>
+        <th scope="col">User name</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  `;
+  const tableBody = taskTable.querySelector('tbody');
+
   filteredTasks.forEach((task, index) => {
     const actualIndex = tasks.indexOf(task);
-    
-    const taskCard = document.createElement('div');
-    taskCard.classList.add('taskCard');
-    
-    let classVal = 'pending';
-    let statusText = 'Pending';
-    
-    if (task.completed) {
-      classVal = 'completed';
-      statusText = 'Completed';
-    }
-    taskCard.classList.add(classVal);
+    const taskRow = document.createElement('tr');
+    taskRow.classList.add(task.completed ? 'completed' : 'pending');
 
-    // Task text
-    const taskText = document.createElement('p');
-    taskText.classList.add('taskText');
-    taskText.innerText = task.text;
+    const taskNameCell = document.createElement('td');
+    taskNameCell.classList.add('taskText');
+    taskNameCell.innerText = task.text;
 
-    // User assignment
-    const userInfo = document.createElement('p');
-    userInfo.classList.add('userInfo');
-    userInfo.innerText = `👤 ${task.assignedUser}`;
+    const userNameCell = document.createElement('td');
+    userNameCell.classList.add('userInfo');
+    userNameCell.innerText = task.assignedUser;
 
-    // Status
-    const taskStatus = document.createElement('p');
+    const statusCell = document.createElement('td');
+    const taskStatus = document.createElement('span');
     taskStatus.classList.add('status');
-    taskStatus.innerText = statusText;
+    taskStatus.innerText = task.completed ? 'Completed' : 'Pending';
+    statusCell.appendChild(taskStatus);
+
+    const actionsCell = document.createElement('td');
+    actionsCell.classList.add('taskActions');
 
     // Toggle button
     const toggleButton = document.createElement('button');
     toggleButton.classList.add('button-box');
-    const btnContentEl = document.createElement('span');
-    btnContentEl.classList.add('green');
-    btnContentEl.innerText = task.completed ? 'Mark as Pending' : 'Mark as Completed';
-    toggleButton.appendChild(btnContentEl);
+    toggleButton.classList.add('toggleButton');
+    toggleButton.innerText = task.completed ? 'Mark as Pending' : 'Mark as Done';
+    toggleButton.setAttribute('aria-label', `${toggleButton.innerText}: ${task.text}`);
     toggleButton.addEventListener('click', () => {
       tasks[actualIndex].completed = !tasks[actualIndex].completed;
       saveTasks();
@@ -217,24 +232,26 @@ function renderTasks() {
     // Delete button
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('button-box');
-    const delBtnContentEl = document.createElement('span');
-    delBtnContentEl.classList.add('red');
-    delBtnContentEl.innerText = 'Delete';
-    deleteButton.appendChild(delBtnContentEl);
+    deleteButton.classList.add('deleteButton');
+    deleteButton.innerText = 'Delete';
+    deleteButton.setAttribute('aria-label', `Delete: ${task.text}`);
     deleteButton.addEventListener('click', () => {
       indexToBeDeleted = actualIndex;
       confirmEl.style.display = 'block';
       taskManagerContainer.classList.add('overlay');
     });
 
-    taskCard.appendChild(taskText);
-    taskCard.appendChild(userInfo);
-    taskCard.appendChild(taskStatus);
-    taskCard.appendChild(toggleButton);
-    taskCard.appendChild(deleteButton);
-
-    taskContainer.appendChild(taskCard);
+    actionsCell.appendChild(toggleButton);
+    actionsCell.appendChild(deleteButton);
+    taskRow.appendChild(taskNameCell);
+    taskRow.appendChild(userNameCell);
+    taskRow.appendChild(statusCell);
+    taskRow.appendChild(actionsCell);
+    tableBody.appendChild(taskRow);
   });
+
+  tableWrapper.appendChild(taskTable);
+  taskContainer.appendChild(tableWrapper);
 }
 
 // STATISTICS 
