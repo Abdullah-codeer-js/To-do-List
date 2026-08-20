@@ -17,7 +17,7 @@ const userSelect = document.getElementById('userSelect');
 const filterUser = document.getElementById('filterUser');
 const taskContainer = document.getElementById('taskContainer');
 
-// ===================== USER MANAGEMENT =====================
+// USER MANAGEMENT 
 
 function saveUsers() {
   localStorage.setItem('users', JSON.stringify(users));
@@ -83,6 +83,11 @@ function addUser() {
     alert('Please enter a username');
     return;
   }
+
+  if (!/[A-Za-z]/.test(userName)) {
+    alert('Username must contain at least one letter');
+    return;
+  }
   
   if (users.includes(userName)) {
     alert('User already exists');
@@ -110,7 +115,7 @@ function deleteUser(index) {
   updateStatistics();
 }
 
-// ===================== TASK MANAGEMENT =====================
+//  TASK MANAGEMENT 
 
 function handleFormSubmit(event) {
   event.preventDefault();
@@ -232,7 +237,7 @@ function renderTasks() {
   });
 }
 
-// ===================== STATISTICS =====================
+// STATISTICS 
 
 function updateStatistics() {
   const totalTasks = tasks.length;
@@ -263,7 +268,7 @@ function updateUserStatistics() {
   });
 }
 
-// ===================== EVENT LISTENERS =====================
+// EVENT LISTENERS 
 
 addUserBtn.addEventListener('click', addUser);
 userInput.addEventListener('keypress', (e) => {
@@ -288,7 +293,7 @@ cancelBtn.addEventListener('click', () => {
   taskManagerContainer.classList.remove('overlay');
 });
 
-// ===================== INITIAL RENDER =====================
+//  INITIAL RENDER 
 
 renderUserList();
 renderTasks();
