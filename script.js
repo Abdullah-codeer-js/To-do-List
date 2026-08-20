@@ -41,7 +41,14 @@ function renderUserList() {
     
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('deleteUserBtn');
-    deleteBtn.innerText = 'X';
+    deleteBtn.type = 'button';
+    deleteBtn.setAttribute('aria-label', `Delete user: ${user}`);
+
+    const deleteIcon = document.createElement('img');
+    deleteIcon.src = 'image.png';
+    deleteIcon.alt = '';
+    deleteBtn.appendChild(deleteIcon);
+
     deleteBtn.addEventListener('click', () => deleteUser(index));
     
     userItem.appendChild(userName);

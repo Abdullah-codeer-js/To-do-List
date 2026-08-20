@@ -146,6 +146,12 @@ h4 {
     background-color: #fed5d5;
 }
 
+.deleteUserBtn img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
 /*  TASK INPUT SECTION  */
 
 .taskInputSection {
